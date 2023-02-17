@@ -17,3 +17,9 @@ class ViewController: UIViewController {
 
 }
 
+enum DownloadState {
+    case idle
+    case loading
+    case finish
+}
+
