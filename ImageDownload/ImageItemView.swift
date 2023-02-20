@@ -6,18 +6,15 @@
 //
 
 import UIKit
+import SnapKit
 
 class ImageItemView: UIView {
     private enum Tag: Int {
+        case root
         case image
         case progress
         case button
     }
-    
-    var url: URL
-    private var state: DownloadState = .idle
-    private var percent: CGFloat = .zero
-    var view: UIView
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,19 +24,47 @@ class ImageItemView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(frame: CGRect = CGRect(x: 0, y: 0, width: 100, height: 100), url: URL) {
+    
+    var url: URL? = nil
+    private var state: DownloadState = .idle
+    private var percent: CGFloat = .zero
+    
+    convenience init(frame: CGRect = CGRect(), url: URL, viewModel: ImageDownloadViewModel) {
         self.init(frame: frame)
         
         self.url = url
         state = .idle
         percent = .zero
         
-        self.view = {
+        let view = {
             let view = UIView()
             
-            let image = UIImageView()
-            let progressBar = UIView()
-            let button = UIButton()
+            let image: UIImageView = {
+                let view = UIImageView()
+                view.contentMode = .scaleAspectFit
+                
+                return view
+            }()
+            
+            let progressBar:UIView = {
+                let view = UIView()
+                view.backgroundColor = .lightGray
+                view.layer.cornerRadius = 5.0
+                return view
+            }()
+            
+            let button:UIButton = {
+                let button = UIButton()
+                
+                button.setTitle("Load Image", for: .normal)
+                button.setTitleColor(UIColor.white, for: .normal)
+                button.backgroundColor = .darkGray
+                button.layer.cornerRadius = 5.0
+                
+                return button
+            }()
+            
+            button.addTarget(self, action: #selector(action(_:)), for: .touchUpInside)
             
             image.tag = Tag.image.rawValue
             progressBar.tag = Tag.progress.rawValue
@@ -50,20 +75,54 @@ class ImageItemView: UIView {
             view.addSubview(button)
             
             // 오토 레이아웃 설정 해야함
+            image.snp.makeConstraints { make in
+                make.left.equalToSuperview().inset(16)
+                make.top.bottom.equalToSuperview().inset(4)
+                make.width.height.equalTo(100)
+            }
             
-            return
+            progressBar.snp.makeConstraints { make in
+                make.left.equalTo(image.snp.right).inset(10)
+                make.height.equalTo(4)
+                make.centerY.equalToSuperview()
+            }
+            
+            button.snp.makeConstraints { make in
+                make.width.equalTo(120)
+                make.height.equalTo(44)
+                make.centerY.equalToSuperview()
+                make.left.equalTo(progressBar.snp.right).offset(10)
+                make.right.equalToSuperview().inset(16)
+            }
+            
+            return view
         }()
+        view.tag = Tag.root.rawValue
+        
+        
+        self.addSubview(view)
+        
+        view.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+        }
+        
+        update(UIImage(named: "testImage")!)
+        
+        self.setNeedsLayout()
+        self.layoutIfNeeded()
     }
     
-    func update(_ frame: CGRect, _ image: UIImage) {
-        guard let view = self.view.viewWithTag(Tag.image.rawValue) as? UIImageView else { return }
-        
+    func update(_ image: UIImage) {
+        guard let view = self.viewWithTag(Tag.image.rawValue) as? UIImageView else { return }
+        print(view.frame.size)
         view.image = image
-        view.frame = CGRect(origin: .zero, size: image.size)
     }
     
     func updata(_ percent: CGFloat) {
         // progress bar 올리기
     }
     
+    @objc func action(_ sender: Any) {
+        print("action button input")
+    }
 }

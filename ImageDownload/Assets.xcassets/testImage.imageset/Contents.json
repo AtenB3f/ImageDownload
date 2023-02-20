@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "ios_5.5inch_01.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

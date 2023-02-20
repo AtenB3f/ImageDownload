@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA38F56C29A04F7800569B18 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CA38F56B29A04F7800569B18 /* SnapKit */; };
+		CA38F56E29A058F300569B18 /* ImageDownloadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA38F56D29A058F300569B18 /* ImageDownloadViewModel.swift */; };
 		CAD4B4AC299F63DF0039B5A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD4B4AB299F63DF0039B5A3 /* AppDelegate.swift */; };
 		CAD4B4AE299F63DF0039B5A3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD4B4AD299F63DF0039B5A3 /* SceneDelegate.swift */; };
 		CAD4B4B0299F63DF0039B5A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD4B4AF299F63DF0039B5A3 /* ViewController.swift */; };
@@ -39,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CA38F56D29A058F300569B18 /* ImageDownloadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadViewModel.swift; sourceTree = "<group>"; };
 		CAD4B4A8299F63DF0039B5A3 /* ImageDownload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageDownload.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAD4B4AB299F63DF0039B5A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAD4B4AD299F63DF0039B5A3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA38F56C29A04F7800569B18 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +119,7 @@
 				CAD4B4DB299F6B230039B5A3 /* ImageDowloadView.swift */,
 				CAD4B4DD299F6B2F0039B5A3 /* ImageItemView.swift */,
 				CAD4B4DF299F708D0039B5A3 /* Download.swift */,
+				CA38F56D29A058F300569B18 /* ImageDownloadViewModel.swift */,
 			);
 			path = ImageDownload;
 			sourceTree = "<group>";
@@ -152,6 +157,9 @@
 			dependencies = (
 			);
 			name = ImageDownload;
+			packageProductDependencies = (
+				CA38F56B29A04F7800569B18 /* SnapKit */,
+			);
 			productName = ImageDownload;
 			productReference = CAD4B4A8299F63DF0039B5A3 /* ImageDownload.app */;
 			productType = "com.apple.product-type.application";
@@ -224,6 +232,9 @@
 				Base,
 			);
 			mainGroup = CAD4B49F299F63DF0039B5A3;
+			packageReferences = (
+				CA38F56A29A04F7800569B18 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = CAD4B4A9299F63DF0039B5A3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -267,6 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA38F56E29A058F300569B18 /* ImageDownloadViewModel.swift in Sources */,
 				CAD4B4B0299F63DF0039B5A3 /* ViewController.swift in Sources */,
 				CAD4B4DC299F6B230039B5A3 /* ImageDowloadView.swift in Sources */,
 				CAD4B4AC299F63DF0039B5A3 /* AppDelegate.swift in Sources */,
@@ -457,6 +469,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -485,6 +498,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -614,6 +628,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CA38F56A29A04F7800569B18 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CA38F56B29A04F7800569B18 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA38F56A29A04F7800569B18 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CAD4B4A0299F63DF0039B5A3 /* Project object */;
 }
