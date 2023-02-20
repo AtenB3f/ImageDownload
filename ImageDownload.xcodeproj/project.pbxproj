@@ -117,9 +117,9 @@
 				CAD4B4B6299F63E00039B5A3 /* LaunchScreen.storyboard */,
 				CAD4B4B9299F63E00039B5A3 /* Info.plist */,
 				CAD4B4DB299F6B230039B5A3 /* ImageDowloadView.swift */,
+				CA38F56D29A058F300569B18 /* ImageDownloadViewModel.swift */,
 				CAD4B4DD299F6B2F0039B5A3 /* ImageItemView.swift */,
 				CAD4B4DF299F708D0039B5A3 /* Download.swift */,
-				CA38F56D29A058F300569B18 /* ImageDownloadViewModel.swift */,
 			);
 			path = ImageDownload;
 			sourceTree = "<group>";

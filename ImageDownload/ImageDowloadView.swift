@@ -9,8 +9,6 @@ import UIKit
 
 class ImageDownloadView: UIView {
     
-    
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -30,9 +28,9 @@ class ImageDownloadView: UIView {
             view.alignment = .top
             view.distribution = .fillProportionally
             
-            for item in viewModel.urls {
+            for (index, item) in viewModel.urls.enumerated() {
                 if let url = URL(string: item) {
-                    let itemView = ImageItemView(url: url, viewModel: viewModel)
+                    let itemView = ImageItemView(index: index, url: url, viewModel: viewModel)
                     view.addArrangedSubview(itemView)
                     print("utem")
                     itemView.snp.makeConstraints { make in

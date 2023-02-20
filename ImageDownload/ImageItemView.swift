@@ -24,15 +24,17 @@ class ImageItemView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
+    var index: Int? = nil
     var url: URL? = nil
+    var viewModel: ImageDownloadViewModel? = nil
     private var state: DownloadState = .idle
     private var percent: CGFloat = .zero
     
-    convenience init(frame: CGRect = CGRect(), url: URL, viewModel: ImageDownloadViewModel) {
+    convenience init(frame: CGRect = CGRect(), index:Int, url: URL, viewModel: ImageDownloadViewModel) {
         self.init(frame: frame)
-        
+        self.index = index
         self.url = url
+        self.viewModel = viewModel
         state = .idle
         percent = .zero
         
@@ -124,5 +126,8 @@ class ImageItemView: UIView {
     
     @objc func action(_ sender: Any) {
         print("action button input")
+        if let url = url, let index = index {
+            viewModel?.requestImageDownload(index, url, callback: update(_:))
+        }
     }
 }
