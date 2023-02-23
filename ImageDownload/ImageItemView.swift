@@ -27,6 +27,7 @@ class ImageItemView: UIView {
     var index: Int? = nil
     var url: URL? = nil
     var viewModel: ImageDownloadViewModel? = nil
+    private var indicator: UIActivityIndicatorView? = nil
     private var state: DownloadState = .idle
     private var percent: CGFloat = .zero
     
@@ -99,17 +100,37 @@ class ImageItemView: UIView {
             
             return view
         }()
+        
+        let indicator: UIActivityIndicatorView = {
+            let view = UIActivityIndicatorView()
+            
+            view.style = .medium
+            view.isHidden = false
+            
+            return view
+        }()
+        
+        indicator.stopAnimating()
+        self.indicator = indicator
+        
         view.tag = Tag.root.rawValue
         
-        NotificationCenter.default.addObserver(self, selector: #selector(recieveNotification(_:)), name: NSNotification.Name(rawValue: "UpdateImage"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadingImage(_:)), name: NSNotification.Name(rawValue: "LoadingImage"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadedImage(_:)), name: NSNotification.Name(rawValue: "UpdateImage"), object: nil)
         
         self.addSubview(view)
+        view.viewWithTag(Tag.image.rawValue)?.addSubview(indicator)
         
         view.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
         }
         
-        update(UIImage(named: "testImage")!)
+        indicator.snp.makeConstraints { make in
+            make.width.height.equalTo(44)
+            make.center.equalToSuperview()
+        }
+        
+        update(UIImage(named: "EmptyImage")!)
         
         self.setNeedsLayout()
         self.layoutIfNeeded()
@@ -117,26 +138,35 @@ class ImageItemView: UIView {
     
     func update(_ image: UIImage) {
         guard let view = self.viewWithTag(Tag.image.rawValue) as? UIImageView else { return }
-        print(view.frame.size)
+        
         view.image = image
+        indicator?.stopAnimating()
     }
     
     func updata(_ percent: CGFloat) {
         // progress bar 올리기
     }
     
-    @objc func recieveNotification(_ notification: Notification) {
+    @objc func loadingImage(_ notification: Notification) {
+        if let index = notification.object as? Int, index == self.index {
+            print("start")
+            
+            indicator?.startAnimating()
+        }
+        
+    }
+    
+    @objc func loadedImage(_ notification: Notification) {
         guard let index = index else { return }
         
-        if let data = notification.userInfo as? [Int: UIImage], let image = data[index] {
-            if index == self.index {
+        if let data = notification.userInfo as? [Int: UIImage] {
+            if let image = data[index], index == self.index {
                 update(image)
             }
         }
     }
     
     @objc func action(_ sender: Any) {
-        print("action button input")
         if let url = url, let index = index {
             viewModel?.requestImageLoad(index, url, callback: update(_:))
         }

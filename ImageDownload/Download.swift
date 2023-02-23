@@ -24,15 +24,6 @@ class Downloader {
             .receive(on: RunLoop.main)
             .eraseToAnyPublisher()
         
-//        URLSession.shared.dataTask(with: request) { (data, response, error) in
-//            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { return }
-//            guard let type = response.mimeType, type.hasPrefix("image") else { return }
-//            guard let data = data, error == nil else { return }
-//
-//
-//
-//        }
-        
     }
     
     func imageDownload(_ url: URL, destinationUrl: URL) -> AnyPublisher<Data, Error> {
