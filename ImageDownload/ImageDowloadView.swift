@@ -17,9 +17,11 @@ class ImageDownloadView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    var viewModel: ImageDownloadViewModel? = nil
+    
     convenience init(frame: CGRect = CGRect(x: 0, y: 0, width: 100, height: 100), viewModel: ImageDownloadViewModel) {
         self.init(frame: frame)
-        
+        self.viewModel = viewModel
         let stack: UIStackView = {
             let view = UIStackView()
             
@@ -49,6 +51,7 @@ class ImageDownloadView: UIView {
             button.setTitle("All Image Load", for: .normal)
             button.backgroundColor = .blue
             button.layer.cornerRadius = 5.0
+            button.addTarget(self, action: #selector(action(_:)), for: .touchUpInside)
             
             return button
         }()
@@ -73,16 +76,9 @@ class ImageDownloadView: UIView {
         self.layoutIfNeeded()
     }
     
+    @objc func action(_ sender: Any) {
+        print("action button input")
+        viewModel?.requestAllLoad()
+    }
     
-//    convenience init(frame: CGRect, viewModel: ImageDownloadViewModel) {
-//        self.init(frame: frame)
-//        
-//        self.view = {
-//            let view = UIView()
-//            
-//            let allButton = UIButton()
-//            
-//            return view
-//        }()
-//    }
 }

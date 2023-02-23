@@ -16,9 +16,9 @@ class ImageDownloadViewModel {
     
     private var cancellables = Set<AnyCancellable>()
     
-    func requestImageDownload(_ index:Int, _ url: URL, callback: @escaping (UIImage)->Void) {
+    func requestImageLoad(_ index:Int, _ url: URL, callback: @escaping (UIImage)->Void) {
         print("zzz")
-//        Downloader().imageDownload(url, destinationUrl: <#T##URL#>)
+        
         Downloader().imageLoad(url)
             .sink { [weak self] error in
                 guard let self = self else { return }
@@ -26,17 +26,36 @@ class ImageDownloadViewModel {
                 print(error)
             } receiveValue: { [weak self]  response in
                 guard let self = self else { return }
-//                guard let self = self else { return }
+                
                 print("ret")
                 if let image = UIImage(data: response) {
                     self.images[index] = image
                     callback(image)
                 }
-//                response
-//                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { return }
-//                guard let type = response.mimeType, type.hasPrefix("image") else { return }
-//                guard let data = data, error == nil else { return }
             }
             .store(in: &cancellables)
+    }
+    
+    func requestAllLoad() {
+        for (index, url) in urls.enumerated(){
+            if let url = URL(string: url) {
+                Downloader().imageLoad(url)
+                    .sink { [weak self] error in
+                        guard let self = self else { return }
+                        print(error)
+                    } receiveValue: { [weak self]  response in
+                        guard let self = self else { return }
+                        
+                        print("ret")
+                        if let image = UIImage(data: response) {
+                            self.images[index] = image
+//                            callback(image)
+                            let data = [index:image]
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateImage"), object: nil, userInfo: data)
+                        }
+                    }
+                    .store(in: &self.cancellables)
+            }
+        }
     }
 }

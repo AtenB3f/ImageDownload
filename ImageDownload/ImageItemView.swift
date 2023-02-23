@@ -51,7 +51,7 @@ class ImageItemView: UIView {
             let progressBar:UIView = {
                 let view = UIView()
                 view.backgroundColor = .lightGray
-                view.layer.cornerRadius = 5.0
+                view.layer.cornerRadius = 2.0
                 return view
             }()
             
@@ -84,7 +84,7 @@ class ImageItemView: UIView {
             }
             
             progressBar.snp.makeConstraints { make in
-                make.left.equalTo(image.snp.right).inset(10)
+                make.left.equalTo(image.snp.right).offset(10)
                 make.height.equalTo(4)
                 make.centerY.equalToSuperview()
             }
@@ -101,6 +101,7 @@ class ImageItemView: UIView {
         }()
         view.tag = Tag.root.rawValue
         
+        NotificationCenter.default.addObserver(self, selector: #selector(recieveNotification(_:)), name: NSNotification.Name(rawValue: "UpdateImage"), object: nil)
         
         self.addSubview(view)
         
@@ -124,10 +125,20 @@ class ImageItemView: UIView {
         // progress bar 올리기
     }
     
+    @objc func recieveNotification(_ notification: Notification) {
+        guard let index = index else { return }
+        
+        if let data = notification.userInfo as? [Int: UIImage], let image = data[index] {
+            if index == self.index {
+                update(image)
+            }
+        }
+    }
+    
     @objc func action(_ sender: Any) {
         print("action button input")
         if let url = url, let index = index {
-            viewModel?.requestImageDownload(index, url, callback: update(_:))
+            viewModel?.requestImageLoad(index, url, callback: update(_:))
         }
     }
 }

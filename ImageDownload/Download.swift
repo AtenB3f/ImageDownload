@@ -17,8 +17,7 @@ class Downloader {
         return URLSession.shared.dataTaskPublisher(for: url)
             .tryMap { result in
                 
-                let dataToString = String(decoding: result.data, as: UTF8.self)
-                print("Result :: \(dataToString)")
+//                let dataToString = String(decoding: result.data, as: UTF8.self)
                 
                 return result.data
             }
