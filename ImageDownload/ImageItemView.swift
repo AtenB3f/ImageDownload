@@ -27,7 +27,11 @@ class ImageItemView: UIView {
     var index: Int? = nil
     var url: URL? = nil
     var viewModel: ImageDownloadViewModel? = nil
-    private var indicator: UIActivityIndicatorView? = nil
+    var indicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    var image: UIImageView = UIImageView()
+    var progressBar: UIView = UIView()
+    var button: UIButton = UIButton()
+    
     private var state: DownloadState = .idle
     private var percent: CGFloat = .zero
     
@@ -42,21 +46,21 @@ class ImageItemView: UIView {
         let view = {
             let view = UIView()
             
-            let image: UIImageView = {
+            self.image = {
                 let view = UIImageView()
                 view.contentMode = .scaleAspectFit
                 
                 return view
             }()
             
-            let progressBar:UIView = {
+            self.progressBar = {
                 let view = UIView()
                 view.backgroundColor = .lightGray
                 view.layer.cornerRadius = 2.0
                 return view
             }()
             
-            let button:UIButton = {
+            self.button = {
                 let button = UIButton()
                 
                 button.setTitle("Load Image", for: .normal)
@@ -137,10 +141,9 @@ class ImageItemView: UIView {
     }
     
     func update(_ image: UIImage) {
-        guard let view = self.viewWithTag(Tag.image.rawValue) as? UIImageView else { return }
         
-        view.image = image
-        indicator?.stopAnimating()
+        self.image.image = image
+        indicator.stopAnimating()
     }
     
     func updata(_ percent: CGFloat) {
@@ -149,9 +152,9 @@ class ImageItemView: UIView {
     
     @objc func loadingImage(_ notification: Notification) {
         if let index = notification.object as? Int, index == self.index {
-            print("start")
             
-            indicator?.startAnimating()
+            image.image = nil
+            indicator.startAnimating()
         }
         
     }

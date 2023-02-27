@@ -29,12 +29,12 @@ class ImageDownloadView: UIView {
             view.spacing = 0
             view.alignment = .top
             view.distribution = .fillProportionally
+            view.backgroundColor = .white
             
             for (index, item) in viewModel.urls.enumerated() {
                 if let url = URL(string: item) {
                     let itemView = ImageItemView(index: index, url: url, viewModel: viewModel)
                     view.addArrangedSubview(itemView)
-                    print("utem")
                     itemView.snp.makeConstraints { make in
                         make.left.right.equalToSuperview()
                     }
@@ -77,7 +77,6 @@ class ImageDownloadView: UIView {
     }
     
     @objc func action(_ sender: Any) {
-        print("action button input")
         viewModel?.requestAllLoad()
     }
     

@@ -68,7 +68,6 @@ class ImageDownloadViewModel {
                     } receiveValue: { [weak self]  response in
                         guard let self = self else { return }
                         
-                        print("ret")
                         if let image = UIImage(data: response) {
                             self.images[index] = image
                             
