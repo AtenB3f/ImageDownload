@@ -8,6 +8,12 @@
 import Foundation
 import Combine
 
+enum DownloadState {
+    case idle
+    case loading
+    case finish
+}
+
 class Downloader {
     func imageLoad(_ url: URL) -> AnyPublisher<Data, Error> {
         

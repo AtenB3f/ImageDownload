@@ -9,16 +9,16 @@
 /* Begin PBXBuildFile section */
 		CA38F56C29A04F7800569B18 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CA38F56B29A04F7800569B18 /* SnapKit */; };
 		CA38F56E29A058F300569B18 /* ImageDownloadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA38F56D29A058F300569B18 /* ImageDownloadViewModel.swift */; };
+		CA3B557E29AEF31F008E3A3F /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3B557D29AEF31F008E3A3F /* ListView.swift */; };
+		CA3B558429AFBFAC008E3A3F /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3B558329AFBFAB008E3A3F /* Protocol.swift */; };
 		CAD4B4AC299F63DF0039B5A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD4B4AB299F63DF0039B5A3 /* AppDelegate.swift */; };
 		CAD4B4AE299F63DF0039B5A3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD4B4AD299F63DF0039B5A3 /* SceneDelegate.swift */; };
-		CAD4B4B0299F63DF0039B5A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD4B4AF299F63DF0039B5A3 /* ViewController.swift */; };
 		CAD4B4B3299F63DF0039B5A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAD4B4B1299F63DF0039B5A3 /* Main.storyboard */; };
 		CAD4B4B5299F63E00039B5A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAD4B4B4299F63E00039B5A3 /* Assets.xcassets */; };
 		CAD4B4B8299F63E00039B5A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAD4B4B6299F63E00039B5A3 /* LaunchScreen.storyboard */; };
 		CAD4B4C3299F63E00039B5A3 /* ImageDownloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD4B4C2299F63E00039B5A3 /* ImageDownloadTests.swift */; };
 		CAD4B4CD299F63E00039B5A3 /* ImageDownloadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD4B4CC299F63E00039B5A3 /* ImageDownloadUITests.swift */; };
 		CAD4B4CF299F63E00039B5A3 /* ImageDownloadUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD4B4CE299F63E00039B5A3 /* ImageDownloadUITestsLaunchTests.swift */; };
-		CAD4B4DC299F6B230039B5A3 /* ImageDowloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD4B4DB299F6B230039B5A3 /* ImageDowloadView.swift */; };
 		CAD4B4DE299F6B2F0039B5A3 /* ImageItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD4B4DD299F6B2F0039B5A3 /* ImageItemView.swift */; };
 		CAD4B4E0299F708D0039B5A3 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD4B4DF299F708D0039B5A3 /* Download.swift */; };
 /* End PBXBuildFile section */
@@ -42,10 +42,11 @@
 
 /* Begin PBXFileReference section */
 		CA38F56D29A058F300569B18 /* ImageDownloadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadViewModel.swift; sourceTree = "<group>"; };
+		CA3B557D29AEF31F008E3A3F /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		CA3B558329AFBFAB008E3A3F /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		CAD4B4A8299F63DF0039B5A3 /* ImageDownload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageDownload.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAD4B4AB299F63DF0039B5A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAD4B4AD299F63DF0039B5A3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CAD4B4AF299F63DF0039B5A3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CAD4B4B2299F63DF0039B5A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CAD4B4B4299F63E00039B5A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAD4B4B7299F63E00039B5A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -55,7 +56,6 @@
 		CAD4B4C8299F63E00039B5A3 /* ImageDownloadUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageDownloadUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAD4B4CC299F63E00039B5A3 /* ImageDownloadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadUITests.swift; sourceTree = "<group>"; };
 		CAD4B4CE299F63E00039B5A3 /* ImageDownloadUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		CAD4B4DB299F6B230039B5A3 /* ImageDowloadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDowloadView.swift; sourceTree = "<group>"; };
 		CAD4B4DD299F6B2F0039B5A3 /* ImageItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageItemView.swift; sourceTree = "<group>"; };
 		CAD4B4DF299F708D0039B5A3 /* Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,14 +111,14 @@
 			children = (
 				CAD4B4AB299F63DF0039B5A3 /* AppDelegate.swift */,
 				CAD4B4AD299F63DF0039B5A3 /* SceneDelegate.swift */,
-				CAD4B4AF299F63DF0039B5A3 /* ViewController.swift */,
 				CAD4B4B1299F63DF0039B5A3 /* Main.storyboard */,
 				CAD4B4B4299F63E00039B5A3 /* Assets.xcassets */,
 				CAD4B4B6299F63E00039B5A3 /* LaunchScreen.storyboard */,
 				CAD4B4B9299F63E00039B5A3 /* Info.plist */,
-				CAD4B4DB299F6B230039B5A3 /* ImageDowloadView.swift */,
-				CA38F56D29A058F300569B18 /* ImageDownloadViewModel.swift */,
+				CA3B557D29AEF31F008E3A3F /* ListView.swift */,
 				CAD4B4DD299F6B2F0039B5A3 /* ImageItemView.swift */,
+				CA38F56D29A058F300569B18 /* ImageDownloadViewModel.swift */,
+				CA3B558329AFBFAB008E3A3F /* Protocol.swift */,
 				CAD4B4DF299F708D0039B5A3 /* Download.swift */,
 			);
 			path = ImageDownload;
@@ -278,9 +278,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA3B557E29AEF31F008E3A3F /* ListView.swift in Sources */,
 				CA38F56E29A058F300569B18 /* ImageDownloadViewModel.swift in Sources */,
-				CAD4B4B0299F63DF0039B5A3 /* ViewController.swift in Sources */,
-				CAD4B4DC299F6B230039B5A3 /* ImageDowloadView.swift in Sources */,
+				CA3B558429AFBFAC008E3A3F /* Protocol.swift in Sources */,
 				CAD4B4AC299F63DF0039B5A3 /* AppDelegate.swift in Sources */,
 				CAD4B4E0299F708D0039B5A3 /* Download.swift in Sources */,
 				CAD4B4AE299F63DF0039B5A3 /* SceneDelegate.swift in Sources */,
