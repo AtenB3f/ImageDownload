@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CA38F56C29A04F7800569B18 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CA38F56B29A04F7800569B18 /* SnapKit */; };
 		CA38F56E29A058F300569B18 /* ImageDownloadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA38F56D29A058F300569B18 /* ImageDownloadViewModel.swift */; };
 		CA3B557E29AEF31F008E3A3F /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3B557D29AEF31F008E3A3F /* ListView.swift */; };
 		CA3B558429AFBFAC008E3A3F /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3B558329AFBFAB008E3A3F /* Protocol.swift */; };
@@ -65,7 +64,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA38F56C29A04F7800569B18 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,7 +156,6 @@
 			);
 			name = ImageDownload;
 			packageProductDependencies = (
-				CA38F56B29A04F7800569B18 /* SnapKit */,
 			);
 			productName = ImageDownload;
 			productReference = CAD4B4A8299F63DF0039B5A3 /* ImageDownload.app */;
@@ -233,7 +230,6 @@
 			);
 			mainGroup = CAD4B49F299F63DF0039B5A3;
 			packageReferences = (
-				CA38F56A29A04F7800569B18 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = CAD4B4A9299F63DF0039B5A3 /* Products */;
 			projectDirPath = "";
@@ -628,25 +624,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		CA38F56A29A04F7800569B18 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SnapKit/SnapKit";
-			requirement = {
-				branch = develop;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		CA38F56B29A04F7800569B18 /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CA38F56A29A04F7800569B18 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CAD4B4A0299F63DF0039B5A3 /* Project object */;
 }

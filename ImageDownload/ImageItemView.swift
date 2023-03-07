@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SnapKit
 
 class ImageItemView: UITableViewCell {
     
@@ -93,30 +92,29 @@ class ImageItemView: UITableViewCell {
         contentView.addSubview(button)
         image.addSubview(indicator)
         
-        indicator.snp.makeConstraints { make in
-            make.width.height.equalTo(44)
-            make.center.equalToSuperview()
-        }
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
+        image.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
+        image.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        image.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
-        image.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(16)
-            make.centerY.equalToSuperview()
-            make.width.height.equalTo(100)
-        }
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.centerXAnchor.constraint(equalTo: image.centerXAnchor).isActive = true
+        indicator.centerYAnchor.constraint(equalTo: image.centerYAnchor).isActive = true
+        indicator.widthAnchor.constraint(equalToConstant: 44).isActive = true
+        indicator.heightAnchor.constraint(equalToConstant: 44).isActive = true
         
-        progressBar.snp.makeConstraints { make in
-            make.left.equalTo(image.snp.right).offset(10)
-            make.height.equalTo(4)
-            make.centerY.equalToSuperview()
-        }
+        progressBar.translatesAutoresizingMaskIntoConstraints = false
+        progressBar.leftAnchor.constraint(equalTo: image.rightAnchor, constant: 10).isActive = true
+        progressBar.heightAnchor.constraint(equalToConstant: 4).isActive = true
+        progressBar.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
-        button.snp.makeConstraints { make in
-            make.width.equalTo(120)
-            make.height.equalTo(44)
-            make.centerY.equalToSuperview()
-            make.left.equalTo(progressBar.snp.right).offset(10)
-            make.right.equalToSuperview().inset(16)
-        }
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.leftAnchor.constraint(equalTo: progressBar.rightAnchor, constant: 10).isActive = true
+        button.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -10).isActive = true
+        button.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 128).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 44).isActive = true
     }
     
     func setAttribute() {

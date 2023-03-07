@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SnapKit
 
 class ListViewController: UIViewController {
     
@@ -45,16 +44,18 @@ class ListViewController: UIViewController {
         self.view.addSubview(tableView)
         self.view.addSubview(allButton)
         
-        tableView.snp.makeConstraints { make in
-            make.horizontalEdges.equalToSuperview()
-            make.top.equalTo(self.view.safeAreaLayoutGuide)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(72)
-        }
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -72).isActive = true
+        tableView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
+        tableView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
         
-        allButton.snp.makeConstraints { make in
-            make.horizontalEdges.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(16)
-            make.height.equalTo(44)
-        }
+        allButton.translatesAutoresizingMaskIntoConstraints = false
+        allButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 16).isActive = true
+        allButton.leftAnchor.constraint(equalTo: tableView.leftAnchor, constant: 16).isActive = true
+        allButton.rightAnchor.constraint(equalTo: tableView.rightAnchor, constant: -16).isActive = true
+        allButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        allButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
     }
 }
 
