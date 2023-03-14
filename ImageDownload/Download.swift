@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 
 enum DownloadState {
     case idle
@@ -15,57 +14,25 @@ enum DownloadState {
 }
 
 class Downloader {
-    func imageLoad(_ url: URL) -> AnyPublisher<Data, Error> {
+    
+    static let shared = Downloader()
+    
+    private var task: URLSessionDataTask!
+    
+    func imageLoad(_ url: URL, _ callback: @escaping (Data?)->Void ) -> Void {
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        
-        return URLSession.shared.dataTaskPublisher(for: url)
-            .tryMap { result in
-                
-//                let dataToString = String(decoding: result.data, as: UTF8.self)
-                
-                return result.data
-            }
-            .receive(on: RunLoop.main)
-            .eraseToAnyPublisher()
-        
-    }
-    
-    func imageDownload(_ url: URL, destinationUrl: URL) -> AnyPublisher<Data, Error> {
-        let subject = PassthroughSubject<Data, Error>()
-        
-        let task = URLSession.shared.downloadTask(with: url) { url, response, error in
-            guard let url = url, let response = response else {
-                if let error = error {
-                    print("imageDownload error - \(error.localizedDescription)")
-                    subject.send(completion: .failure(error))
-                }
+        task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard error == nil else {
+                print(error!.localizedDescription)
                 
                 return
             }
             
-            do {
-                if let type = response.mimeType, type.hasPrefix("image") {
-                    let file = try FileHandle(forReadingFrom: url)
-                    
-                    DispatchQueue.global().async {
-                        let data = file.readDataToEndOfFile()
-                        FileManager().createFile(atPath: destinationUrl.path, contents: data)
-                        subject.send(data)
-                    }
-                }
-                
-            } catch {
-                print("imageDownload error")
-            }
+            callback(data)
         }
         
         task.resume()
-        // open func downloadTask(with url: URL, completionHandler: @escaping @Sendable (URL?, URLResponse?, Error?) -> Void) -> URLSessionDownloadTask
-        
-        return subject
-            .receive(on: RunLoop.main)
-            .eraseToAnyPublisher()
     }
 }

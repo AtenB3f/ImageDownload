@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Combine
 
 enum Status {
     case idle
@@ -30,8 +29,6 @@ class ImageDownloadViewModel {
     
     var status: Status = .idle
     
-    private var cancellables = Set<AnyCancellable>()
-    
     func requestImageLoad(_ index:Int, _ url: URL) {
         guard status != .loading else { return }
         
@@ -39,24 +36,17 @@ class ImageDownloadViewModel {
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LoadingImage"), object: index)
         
-        Downloader().imageLoad(url)
-            .sink { [weak self] error in
-                guard let self = self else { return }
-                
-                print(error)
-                self.status = .idle
-                
-            } receiveValue: { [weak self]  response in
-                guard let self = self else { return }
-                
-                if let image = UIImage(data: response) {
+        Downloader.shared.imageLoad(url) { [weak self] response in
+            guard let self = self else { return }
+            guard let response = response else { return }
+            if let image = UIImage(data: response) {
+                DispatchQueue.main.async {
                     self.images[index] = image
-                    
                     let data = [index:image]
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateImage"), object: nil, userInfo: data)
                 }
             }
-            .store(in: &cancellables)
+        }
     }
     
     func requestAllLoad() {
@@ -68,24 +58,18 @@ class ImageDownloadViewModel {
             if let url = URL(string: url) {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LoadingImage"), object: index)
                 
-                Downloader().imageLoad(url)
-                    .sink { [weak self] error in
-                        guard let self = self else { return }
-                        print(error)
-                        
-                        self.status = .idle
-                        
-                    } receiveValue: { [weak self]  response in
-                        guard let self = self else { return }
-                        
+                Downloader.shared.imageLoad(url) { [weak self] response in
+                    guard let self = self else { return }
+                    guard let response = response else { return }
+                    DispatchQueue.main.async {
                         if let image = UIImage(data: response) {
                             self.images[index] = image
-                            
+
                             let data = [index:image]
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateImage"), object: nil, userInfo: data)
                         }
                     }
-                    .store(in: &self.cancellables)
+                }
             }
         }
     }
